@@ -1,0 +1,15 @@
+docker build -t jjayoma2017/multi-client:latest -t jjayoma2017/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t jjayoma2017/multi-server:latest -t jjayoma2017/multi-server:$SHA -f ./client/Dockerfile ./server
+docker build -t jjayoma2017/multi-worker:latest -t jjayoma2017/multi-worker:$SHA -f ./client/Dockerfile ./worker
+docker push jjayoma2017/multi-client:latest
+docker push jjayoma2017/multi-server:latest
+docker push jjayoma2017/multi-worker:latest
+
+docker push jjayoma2017/multi-client:$SHA
+docker push jjayoma2017/multi-server:$SHA
+docker push jjayoma2017/multi-worker:$SHA
+
+kubectl apply -f k8s
+kubectl set image deployments/client-deployment client=jjayoma2017/multi-client:$SHA
+kubectl set image deployments/server-deployment server=jjayoma2017/multi-server:$SHA
+kubectl set image deployments/worker-deployment worker=jjayoma2017/multi-worker:$SHA

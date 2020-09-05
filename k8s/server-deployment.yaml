@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: jjayoma2017/multi-server:v1
+          image: jjayoma2017/multi-server
           ports:
             - containerPort: 5000
           env:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: jjayoma2017/multi-worker:v1
+          image: jjayoma2017/multi-worker
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
